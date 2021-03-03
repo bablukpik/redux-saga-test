@@ -6,26 +6,21 @@ import Card from './Card';
 const Users = () => {
     const dispatch = useDispatch();
     const users = useSelector(state => state.usersReducer.users);
+    const loading = useSelector(state => state.usersReducer.loading);
+    const error = useSelector(state => state.usersReducer.error);
 
     useEffect(() => {
-        dispatch(usersAction([
-            {
-                id: 1,
-                name: 'Bablu Ahmed',
-                company: {
-                    name: "ABC",
-                    catchPhrase: "Software Development, Software Company",
-                }
-            }
-        ]));
+        dispatch(usersAction());
     }, [])
 
     return (
         <>
+            {users.loading && <p>Loading...</p>}
+            {users.length === 0 && !loading && <p>No users available!</p>}
+            {error && !loading && <p>{error}</p>}
             {users.length > 0 && users.map((user) => (
                 <Card key={user.id} user={user} />
             ))}
-            {users.length === 0 && <p>No users available!</p>}
         </>
     )
 }

@@ -5,7 +5,7 @@ import * as type from '../types';
 // Basicly It'll get users and save them in the reducers
 const usersAction = (users) => {
     return {
-        type: type.GET_USERS,
+        type: type.GET_USERS_REQUESTED,
         payload: users,
     }
 }
