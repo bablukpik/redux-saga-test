@@ -12,7 +12,9 @@ function getUsersApi() {
 }
 
 function* fetchUsers(action) {
+    // console.log(action.type); //GET_USERS
     try {
+        yield put({ type: 'GET_USERS_REQUESTED' });
         const users = yield call(getUsersApi);
         yield put({ type: 'GET_USERS_SUCCESS', users: users });
     } catch (e) {
@@ -21,7 +23,7 @@ function* fetchUsers(action) {
 }
 
 function* usersSaga() {
-    yield takeEvery('GET_USERS_REQUESTED', fetchUsers);
+    yield takeEvery('GET_USERS', fetchUsers); // here catching the action type and accordingly calling a function for dispatch to reducer.
 }
 
 export default usersSaga;

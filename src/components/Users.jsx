@@ -11,6 +11,9 @@ const Users = () => {
 
     useEffect(() => {
         dispatch(usersAction());
+        // dispatch({
+        //     type: type.GET_USERS_REQUESTED,
+        // });
     }, [])
 
     return (
